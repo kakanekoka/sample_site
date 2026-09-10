@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>恵伸タイヤ｜大型トラックのタイヤ交換</title>
+<meta name="description" content="恵伸タイヤは、大型トラックのタイヤ交換を専門にしている会社です。三河エリアを中心に、営業所や現場への出張交換にも対応しています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#2A2D31;
+    --concrete:#E4E5E1;
+    --paper:#F6F6F3;
+    --ink:#1C1E21;
+    --muted:#4F545A;
+    --yellow:#F2B705;
+    --rule:#CFD1CC;
+    --display:"Dela Gothic One","Hiragino Sans","Noto Sans JP",sans-serif;
+    --body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{color-scheme:light only;background:var(--paper)}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  svg{display:block}
+  :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .nb{display:inline-block}
+
+  /* ヘッダー＋スクロール連動の道路 */
+  .site-header{position:sticky;top:0;z-index:20;background:var(--paper)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:60px}
+  .logo{font-family:var(--display);font-size:18px;text-decoration:none}
+  .site-nav{margin-left:auto}
+  .site-nav ul{display:flex;gap:24px;list-style:none;font-size:14px}
+  .site-nav a{text-decoration:none;color:var(--muted)}
+  .site-nav a:hover{color:var(--ink)}
+  .header-actions{display:flex;align-items:center;gap:8px}
+  .ig-mark{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:2px solid var(--ink);border-radius:999px;font-size:14px;font-weight:700;line-height:1.3;text-decoration:none}
+  .ig-mark:hover{background:var(--white,#fff)}
+  .ig-mark img{width:18px;height:18px}
+  .road{position:relative;height:22px;background:var(--asphalt);overflow:hidden}
+  .road::before{content:"";position:absolute;left:0;right:0;top:10px;height:2px;background:repeating-linear-gradient(90deg,var(--yellow) 0 18px,transparent 18px 34px)}
+  .truck{position:absolute;top:2px;left:0;width:48px;height:18px;will-change:transform}
+
+  /* ボタン */
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border:2px solid transparent;border-radius:999px;font-weight:700;font-size:15px;line-height:1.3;text-decoration:none}
+  .btn-yellow{background:var(--yellow);color:var(--ink)}
+  .btn-yellow:hover{background:#FFC72C}
+  .btn-small{padding:8px 18px;font-size:14px}
+  .btn-line{border-color:rgba(255,255,255,.45);color:#fff}
+  .btn-line:hover{border-color:#fff}
+  .btn-dark{background:var(--asphalt);color:#fff}
+  .btn-dark:hover{background:var(--ink)}
+
+  /* ヒーロー */
+  .hero{position:relative;overflow:hidden;background:var(--asphalt);color:#fff}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:80px;padding-bottom:128px}
+  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,72px);line-height:1.28}
+  .hero-lead{margin-top:24px;max-width:28em;font-size:17px;color:#C9CDD1}
+  .hero-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px}
+  .tire{width:100%;max-width:440px;margin-left:auto;will-change:transform}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:44px;height:4px;background:repeating-linear-gradient(90deg,var(--yellow) 0 48px,transparent 48px 88px)}
+
+  /* セクション共通 */
+  .section{padding:96px 0;background:var(--paper);color:var(--ink)}
+  .h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.4}
+  .lead{margin-top:12px;max-width:32em;color:var(--muted)}
+
+  /* 会社紹介 */
+  .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:start}
+  .message{margin-top:28px;max-width:32em;font-size:17px;line-height:2.05}
+  .message p + p{margin-top:1em}
+  .sign{margin-top:24px;font-weight:700}
+  .facts{border-top:2px solid var(--ink)}
+  .fact{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--rule)}
+  .fact dt{font-size:14px;color:var(--muted)}
+  .fact dd{font-family:var(--display);font-size:26px;line-height:1.2}
+
+  /* 仕事内容 */
+  .services{background:var(--concrete)}
+  .service-list{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px}
+  .service{padding-left:20px;border-left:4px solid var(--yellow)}
+  .service h3{margin-bottom:10px;font-size:20px;line-height:1.5}
+  .service p{font-size:15px;color:var(--muted)}
+
+  /* 作業の流れ */
+  /* 作業の流れ：スクロールに合わせてタイヤ交換が進む */
+  #flow.section{padding:0}
+  .flow-track{height:240vh}
+  .flow-stage{position:sticky;top:82px;display:flex;align-items:center;height:calc(100vh - 82px);height:calc(100svh - 82px);overflow:hidden}
+  .flow-stage .wrap{width:100%}
+  .scene{display:block;width:100%;max-width:760px;margin:24px auto 0}
+  .scene .jack-post{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0)}
+  .scene .old-tire,.scene .new-tire,.scene .badge,.scene .rw{transform-box:fill-box;transform-origin:center}
+  .scene .bubble{transform-box:fill-box;transform-origin:50% 100%}
+  .scene .new-tire,.scene .worker,.scene .badge,.scene .bubble,.scene .ic-cal{opacity:0}
+  .scene .wrench{transform-box:view-box;transform-origin:548px 232px}
+  .flow-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px}
+  .scroll-hint{display:inline-flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;border-radius:999px;background:var(--asphalt);color:#fff;font-size:14px;font-weight:700;transition:opacity .3s ease}
+  .scroll-hint svg{animation:nudge 1.2s ease-in-out infinite}
+  @keyframes nudge{50%{transform:translateY(4px)}}
+  .steps{position:relative;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);margin-top:32px;--fill:0}
+  .steps::before{content:"";position:absolute;z-index:1;top:12px;left:0;width:calc(100% * var(--fill));height:3px;background:var(--yellow)}
+  .steps li{position:relative;padding:44px 12px 0;text-align:center}
+  .steps li h3,.steps li p,.steps li .step-no{transition:color .3s ease}
+  .steps li:not(.is-active):not(.is-done) h3,.steps li:not(.is-active):not(.is-done) .step-no{color:#A9ADB1}
+  .steps li:not(.is-active):not(.is-done) p{color:#B9BCBF}
+  .steps li::before{content:"";position:absolute;top:12px;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,var(--yellow) 0 14px,transparent 14px 24px)}
+  .steps li::after{content:"";position:absolute;z-index:2;top:4px;left:50%;transform:translateX(-50%);width:19px;height:19px;border-radius:50%;background:var(--asphalt);transition:background .3s ease,box-shadow .3s ease}
+  .steps li:not(.is-active):not(.is-done)::after{background:#C4C7C4}
+  .steps li.is-active::after{background:var(--yellow);box-shadow:0 0 0 6px rgba(242,183,5,.28)}
+  .step-no{display:block;font-size:13px;color:var(--muted)}
+  .steps h3{margin:2px 0 8px;font-size:18px;line-height:1.5}
+  .steps p{font-size:14px;line-height:1.8;color:var(--muted)}
+  .step-caption{display:none}
+  /* 動きを減らす設定の人には、完成状態を普通に表示 */
+  .flow-static .flow-track{height:auto}
+  .flow-static .flow-stage{position:static;height:auto;padding:72px 0}
+  .flow-static .scroll-hint{display:none}
+  .flow-static .steps::before{display:none}
+  .flow-static .steps li h3,.flow-static .steps li .step-no{color:var(--ink) !important}
+  .flow-static .steps li p{color:var(--muted) !important}
+  .flow-static .steps li::after{background:var(--asphalt) !important;box-shadow:none !important}
+
+  /* 作業の様子（Instagram導線＋タブ切替ギャラリー） */
+  .works{background:var(--asphalt);color:#fff}
+  .works-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:40px}
+  .works .lead{color:#C9CDD1}
+  .works-cta{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .btn-ig{gap:10px;padding:16px 30px;font-size:16px}
+  .btn-ig img{width:22px;height:22px}
+  .tabs{display:inline-flex;gap:4px;margin-bottom:20px;padding:4px;border-radius:999px;background:rgba(255,255,255,.08)}
+  .tab{padding:10px 24px;border:none;border-radius:999px;background:none;color:#C9CDD1;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer}
+  .tab:hover{color:#fff}
+  .tab[aria-selected="true"]{background:var(--yellow);color:var(--ink)}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .gallery[hidden]{display:none}
+  .shot{aspect-ratio:1;overflow:hidden;border-radius:4px;background:#34383D}
+  .shot img{display:block;width:100%;height:100%;object-fit:cover}
+  .gallery .shot{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;transition-delay:calc(var(--i) * 60ms)}
+  .gallery.in .shot{opacity:1;transform:none}
+  .works-more{margin-top:28px;text-align:center}
+
+  /* お問い合わせ */
+  .contact{background:var(--yellow)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .contact .lead{color:var(--ink)}
+  .contact-box{display:flex;flex-direction:column;gap:20px;padding:32px;border-radius:12px;background:var(--paper)}
+  .contact-box .btn{width:100%}
+  .mail-addr{font-size:14px;color:var(--muted);text-align:center}
+  .tel{display:block;text-align:center;text-decoration:none;font-family:var(--display);font-size:30px;line-height:1.2}
+  .tel small{display:block;margin-top:6px;font-family:var(--body);font-size:13px;color:var(--muted)}
+  .divider{height:1px;background:var(--rule)}
+
+  /* 会社情報 */
+  .company{display:grid;grid-template-columns:140px 1fr;max-width:760px;margin-top:32px;border-top:2px solid var(--ink)}
+  .company dt,.company dd{padding:16px 0;border-bottom:1px solid var(--rule)}
+  .company dt{font-size:14px;color:var(--muted);padding-top:18px}
+
+  .site-footer{padding:32px 0;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+
+  /* スマホ用の追従バー */
+  .float-contact{display:none}
+
+  @media (max-width:900px){
+    .site-nav{display:none}
+    .hero .wrap{grid-template-columns:1fr;gap:8px;padding-top:56px;padding-bottom:96px}
+    .tire{max-width:300px;margin-right:-72px}
+    .hero::after{bottom:32px}
+    .section{padding:72px 0}
+    .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .service-list{grid-template-columns:1fr;gap:28px}
+    .flow-track{height:220vh}
+    .flow-stage{padding-bottom:64px}
+    .scene{width:calc(100% + 32px);max-width:none;margin:20px -16px 0}
+    .steps{margin-top:24px}
+    .steps li{padding:30px 4px 0}
+    .steps li::before,.steps::before{top:7px}
+    .scroll-hint{font-size:13px;padding:6px 14px 6px 10px}
+    .steps li::after{top:0;width:17px;height:17px}
+    .steps h3{margin:0;font-size:13px;line-height:1.4}
+    .steps p{display:none}
+    .step-caption{display:block;min-height:4.4em;margin-top:18px;padding:12px 16px;border-radius:8px;background:#fff;font-size:14px;line-height:1.7}
+    .flow-static .steps p{display:block}
+    .flow-static .step-caption{display:none}
+    .tabs{display:grid;grid-template-columns:repeat(3,1fr);width:100%}
+    .tab{padding:10px 8px}
+    .gallery{gap:4px}
+    .works-cta{width:100%}
+    .btn-ig{width:100%}
+    .contact-box{padding:24px}
+    .site-footer{padding-bottom:96px}
+
+    .float-contact{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;display:grid;grid-template-columns:1fr 1.4fr;gap:8px;padding:8px;border-radius:999px;background:var(--asphalt);box-shadow:0 8px 24px rgba(0,0,0,.28);transform:translateY(160%);visibility:hidden;transition:transform .35s ease,visibility 0s .35s}
+    .float-contact.show{transform:none;visibility:visible;transition:transform .35s ease}
+    .float-contact .btn{padding:11px 12px;font-size:14px}
+  }
+  @media (max-width:520px){
+    .bar{gap:8px}
+    .logo{font-size:15px}
+    .ig-mark{padding:6px 10px;font-size:13px}
+    .header-actions .btn-small{padding:8px 12px;font-size:13px}
+    .company{grid-template-columns:1fr}
+    .company dt{border-bottom:none;padding-bottom:0}
+    .company dd{padding-top:2px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .gallery .shot{opacity:1;transform:none;transition:none}
+    .float-contact{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!--
+  ★差し替えメモ
+  ・「info@example.com」を実際のメールアドレスに一括置換
+  ・「your_account」を実際のInstagramのユーザー名に一括置換
+  ・「〇〇」を社名・地域・数字などに差し替え
+  ・images/instagram-glyph.png にInstagram公式のマーク（黒）を置く
+  ・images/truck-1.jpg など18枚を実際の写真で上書き
+-->
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#top">恵伸タイヤ</a>
+    <nav class="site-nav" aria-label="ページ内メニュー">
+      <ul>
+        <li><a href="#about"><font face="YuGothic"><b>会社紹介</b></font></a></li>
+        <li><a href="#services"><font face="YuGothic"><b>仕事内容</b></font></a></li>
+        <li><a href="#works"><font face="YuGothic"><b>作業の様子</b></font></a></li>
+        <li><a href="#flow"><font face="YuGothic"><b>作業の流れ</b></font></a></li>
+        <li><a href="#company"><font face="YuGothic"><b>会社情報</b></font></a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="ig-mark" href="https://www.instagram.com/your_account/" target="_blank" rel="noopener">
+        <img src="images/Instagram_Glyph_Gradient.png" alt="" onerror="this.remove()">Instagram
+      </a>
+      <a class="btn btn-yellow btn-small" href="#contact">ご依頼・ご相談</a>
+    </div>
+  </div>
+  <div class="road" aria-hidden="true">
+    <svg class="truck" viewBox="0 0 48 18">
+      <rect x="0" y="1" width="30" height="11" rx="1" fill="#F6F6F3"/>
+      <rect x="31" y="4" width="13" height="8" rx="1.5" fill="#F2B705"/>
+      <rect x="38" y="5.5" width="4.5" height="3" fill="#2A2D31"/>
+      <rect x="0" y="12" width="46" height="1.5" fill="#F6F6F3"/>
+      <circle cx="6" cy="15" r="2.6" fill="#111"/><circle cx="12" cy="15" r="2.6" fill="#111"/>
+      <circle cx="26" cy="15" r="2.6" fill="#111"/><circle cx="40" cy="15" r="2.6" fill="#111"/>
+    </svg>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div>
+        <h1><span class="nb">止まらない</span><span class="nb">物流を、</span><br><span class="nb">足元から</span><span class="nb">支える。</span></h1>
+        <p class="hero-lead">恵伸タイヤは、大型トラックのタイヤ交換を専門にしている会社です。三河エリアを中心に、営業所や現場への出張交換にも対応しています。</p>
+        <div class="hero-actions">
+          <a class="btn btn-yellow" href="mailto:info@example.com">メールで依頼する</a>
+          <a class="btn btn-line" href="#about">会社紹介を見る</a>
+        </div>
+      </div>
+
+      <svg class="tire" viewBox="0 0 400 400" aria-hidden="true">
+        <circle cx="200" cy="200" r="192" fill="#16181B"/>
+        <circle cx="200" cy="200" r="178" fill="none" stroke="#3A3E43" stroke-width="22" stroke-dasharray="16 11.96"/>
+        <circle cx="200" cy="200" r="160" fill="#1D1F22"/>
+        <circle cx="200" cy="200" r="146" fill="none" stroke="#2F3236" stroke-width="2"/>
+        <circle cx="200" cy="200" r="118" fill="#BFC3C7"/>
+        <circle cx="200" cy="200" r="104" fill="#A9ADB2"/>
+        <g fill="#1D1F22">
+          <ellipse cx="200" cy="116" rx="12" ry="18"/>
+          <ellipse cx="200" cy="116" rx="12" ry="18" transform="rotate(72 200 200)"/>
+          <ellipse cx="200" cy="116" rx="12" ry="18" transform="rotate(144 200 200)"/>
+          <ellipse cx="200" cy="116" rx="12" ry="18" transform="rotate(216 200 200)"/>
+          <ellipse cx="200" cy="116" rx="12" ry="18" transform="rotate(288 200 200)"/>
+        </g>
+        <circle cx="200" cy="200" r="58" fill="#C9CDD1"/>
+        <g fill="#5B6066" stroke="#F2B705" stroke-width="2.5">
+          <circle cx="200" cy="158" r="7"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(36 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(72 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(108 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(144 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(180 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(216 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(252 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(288 200 200)"/>
+          <circle cx="200" cy="158" r="7" transform="rotate(324 200 200)"/>
+        </g>
+        <circle cx="200" cy="200" r="22" fill="#8E9398"/>
+        <circle cx="200" cy="200" r="10" fill="#6B7075"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2 class="h2">私たちについて</h2>
+        <div class="message">
+          <p>トラックが一台止まると、荷物も、それを待つ人の予定も止まっちゃうよ</p>
+          <p>営業所の一角でも、道路脇の現場でも、呼んでいただければ伺います。</p>
+        </div>
+        <p class="sign">代表取締役　〇〇 〇〇</p>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>創業</dt><dd>2023年</dd></div>
+        <div class="fact"><dt>対応エリア</dt><dd>三河地区全域</dd></div>
+        <div class="fact"><dt>出張交換</dt><dd>対応</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="wrap">
+      <h2 class="h2">仕事内容</h2>
+      <p class="lead">大型・中型トラックのタイヤ交換を専門にしています。</p>
+      <div class="service-list">
+        <div class="service">
+          <h3>大型トラックのタイヤ交換</h3>
+          <p>トラクター、トレーラー、ダンプなど、大型車両のタイヤ交換に対応します。</p>
+        </div>
+        <div class="service">
+          <h3>出張交換</h3>
+          <p>営業所や現場まで伺います。車両を動かせないときもご相談ください。</p>
+        </div>
+        <div class="service">
+          <h3>点検・ローテーション</h3>
+          <p>摩耗や空気圧をチェックし、交換時期の目安をお伝えします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section works" id="works">
+    <div class="wrap">
+      <div class="works-head">
+        <div>
+          <h2 class="h2"><span class="nb">日々の作業は、</span><br><span class="nb">Instagramで。</span></h2>
+          <p class="lead">交換作業の様子を、ほぼ毎日投稿しています。</p>
+        </div>
+        <div class="works-cta">
+          <a class="btn btn-yellow btn-ig" href="https://www.instagram.com/your_account/" target="_blank" rel="noopener">
+            <img src="images/instagram-glyph.png" alt="" onerror="this.remove()">Instagramで作業を見る
+          </a>
+        </div>
+      </div>
+
+      <!-- 画像は images フォルダ内の同じ名前のファイルを上書きすれば差し替わる -->
+      <div class="tabs" role="tablist" aria-label="作業の種類">
+        <button class="tab" role="tab" id="tab-truck" aria-controls="panel-truck" aria-selected="true">トラック</button>
+        <button class="tab" role="tab" id="tab-car" aria-controls="panel-car" aria-selected="false" tabindex="-1">乗用車</button>
+        <button class="tab" role="tab" id="tab-other" aria-controls="panel-other" aria-selected="false" tabindex="-1">その他</button>
+      </div>
+        <div class="gallery" id="panel-truck" role="tabpanel" aria-labelledby="tab-truck">
+          <figure class="shot" style="--i:0"><img src="images/truck-1.jpg" alt="トラックのタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:1"><img src="images/truck-2.jpg" alt="トラックのタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:2"><img src="images/truck-3.jpg" alt="トラックのタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:3"><img src="images/truck-4.jpg" alt="トラックのタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:4"><img src="images/truck-5.jpg" alt="トラックのタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:5"><img src="images/truck-6.jpg" alt="トラックのタイヤ交換作業" loading="lazy"></figure>
+        </div>
+        <div class="gallery" id="panel-car" role="tabpanel" aria-labelledby="tab-car" hidden>
+          <figure class="shot" style="--i:0"><img src="images/car-1.jpg" alt="乗用車のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:1"><img src="images/car-2.jpg" alt="乗用車のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:2"><img src="images/car-3.jpg" alt="乗用車のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:3"><img src="images/car-4.jpg" alt="乗用車のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:4"><img src="images/car-5.jpg" alt="乗用車のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:5"><img src="images/car-6.jpg" alt="乗用車のタイヤ交換作業" loading="lazy"></figure>
+        </div>
+        <div class="gallery" id="panel-other" role="tabpanel" aria-labelledby="tab-other" hidden>
+          <figure class="shot" style="--i:0"><img src="images/other-1.jpg" alt="その他のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:1"><img src="images/other-2.jpg" alt="その他のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:2"><img src="images/other-3.jpg" alt="その他のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:3"><img src="images/other-4.jpg" alt="その他のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:4"><img src="images/other-5.jpg" alt="その他のタイヤ交換作業" loading="lazy"></figure>
+          <figure class="shot" style="--i:5"><img src="images/other-6.jpg" alt="その他のタイヤ交換作業" loading="lazy"></figure>
+        </div>
+
+      <p class="works-more"><a class="btn btn-line" href="https://www.instagram.com/your_account/" target="_blank" rel="noopener">ほかの作業もInstagramで見る</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="flow">
+    <div class="flow-track">
+      <div class="flow-stage">
+        <div class="wrap">
+          <div class="flow-head">
+            <h2 class="h2">作業の流れ</h2>
+            <p class="scroll-hint"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6 l5 5 l5 -5" fill="none" stroke="#F2B705" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>スクロールすると作業が進みます</p>
+          </div>
+      <svg class="scene" viewBox="70 40 610 238" aria-hidden="true">
+        <rect x="0" y="252" width="800" height="3" fill="#CFD1CC"/>
+        <line x1="0" y1="268" x2="800" y2="268" stroke="#F2B705" stroke-width="3" stroke-dasharray="36 28"/>
+        <g class="truck-body">
+          <rect x="90" y="60" width="360" height="150" rx="4" fill="#2A2D31"/>
+          <text x="270" y="145" text-anchor="middle" font-family="Dela Gothic One, sans-serif" font-size="30" fill="#F6F6F3">株式会社〇〇</text>
+          <rect x="80" y="210" width="540" height="12" fill="#2A2D31"/>
+          <path d="M462 100 h100 l48 62 v60 h-148 z" fill="#F2B705"/>
+          <path d="M488 114 h62 l34 44 h-96 z" fill="#2A2D31"/>
+          <g class="rw"><circle cx="160" cy="232" r="28" fill="#16181B"/><circle cx="160" cy="232" r="24.5" fill="none" stroke="#3A3E43" stroke-width="5" stroke-dasharray="5 4.62"/><circle cx="160" cy="232" r="15" fill="#BFC3C7"/><circle cx="160" cy="232" r="6" fill="#6B7075"/><circle cx="160.0" cy="222.0" r="2" fill="#F2B705"/><circle cx="169.5" cy="228.9" r="2" fill="#F2B705"/><circle cx="165.9" cy="240.1" r="2" fill="#F2B705"/><circle cx="154.1" cy="240.1" r="2" fill="#F2B705"/><circle cx="150.5" cy="228.9" r="2" fill="#F2B705"/></g><g class="rw"><circle cx="225" cy="232" r="28" fill="#16181B"/><circle cx="225" cy="232" r="24.5" fill="none" stroke="#3A3E43" stroke-width="5" stroke-dasharray="5 4.62"/><circle cx="225" cy="232" r="15" fill="#BFC3C7"/><circle cx="225" cy="232" r="6" fill="#6B7075"/><circle cx="225.0" cy="222.0" r="2" fill="#F2B705"/><circle cx="234.5" cy="228.9" r="2" fill="#F2B705"/><circle cx="230.9" cy="240.1" r="2" fill="#F2B705"/><circle cx="219.1" cy="240.1" r="2" fill="#F2B705"/><circle cx="215.5" cy="228.9" r="2" fill="#F2B705"/></g>
+        </g>
+        <g class="jack"><rect x="486" y="242" width="34" height="10" rx="2" fill="#5B6066"/><rect class="jack-post" x="497" y="222" width="12" height="22" fill="#F2B705"/></g>
+        <g class="old-tire"><circle cx="545" cy="232" r="28" fill="#16181B"/><circle cx="545" cy="232" r="24.5" fill="none" stroke="#2E3236" stroke-width="5" stroke-dasharray="5 4.62"/><circle cx="545" cy="232" r="15" fill="#8E9398"/><circle cx="545" cy="232" r="6" fill="#6B7075"/></g>
+        <g class="new-tire"><circle cx="545" cy="232" r="28" fill="#16181B"/><circle cx="545" cy="232" r="24.5" fill="none" stroke="#3A3E43" stroke-width="5" stroke-dasharray="5 4.62"/><circle cx="545" cy="232" r="15" fill="#BFC3C7"/><circle cx="545" cy="232" r="6" fill="#6B7075"/><circle cx="545.0" cy="222.0" r="2" fill="#F2B705"/><circle cx="554.5" cy="228.9" r="2" fill="#F2B705"/><circle cx="550.9" cy="240.1" r="2" fill="#F2B705"/><circle cx="539.1" cy="240.1" r="2" fill="#F2B705"/><circle cx="535.5" cy="228.9" r="2" fill="#F2B705"/></g>
+        <g class="worker">
+          <rect class="wrench" x="546" y="228" width="74" height="7" rx="3" fill="#8E9398"/>
+          <g transform="translate(18 0)">
+          <path d="M606 222 h30 l6 30 h-12 l-4 -18 h-16 z" fill="#34495E"/>
+          <rect x="604" y="186" width="26" height="40" rx="8" fill="#34495E"/>
+          <rect x="604" y="206" width="26" height="4" fill="#F2B705"/>
+          <path d="M608 196 l-6 34 l8 2 l6 -32 z" fill="#34495E"/>
+          <circle cx="617" cy="176" r="9" fill="#34495E"/>
+          <path d="M604 174 a13 13 0 0 1 26 0 z" fill="#F2B705"/>
+          </g>
+        </g>
+        <g class="bubble">
+          <path d="M522 46 h64 a10 10 0 0 1 10 10 v26 a10 10 0 0 1 -10 10 h-20 l-10 12 l-4 -12 h-30 a10 10 0 0 1 -10 -10 v-26 a10 10 0 0 1 10 -10 z" fill="#fff" stroke="#1C1E21" stroke-width="2"/>
+          <g class="ic-mail"><rect x="540" y="58" width="28" height="20" rx="2" fill="#F2B705"/><path d="M540 60 l14 10 l14 -10" fill="none" stroke="#1C1E21" stroke-width="2"/></g>
+          <g class="ic-cal"><rect x="540" y="56" width="28" height="24" rx="2" fill="#fff" stroke="#1C1E21" stroke-width="2"/><rect x="540" y="56" width="28" height="7" fill="#F2B705" stroke="#1C1E21" stroke-width="2"/><path d="M547 71 l4 4 l8 -8" fill="none" stroke="#1C1E21" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g>
+        <g class="badge"><circle cx="560" cy="72" r="18" fill="#F2B705"/><path d="M551 72 l6 6 l12 -13" fill="none" stroke="#1C1E21" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+      </svg>
+          <ol class="steps">
+            <li><span class="step-no">1</span><h3>ご連絡</h3><p>メールかお電話で、車種・本数・場所をお知らせください。</p></li>
+            <li><span class="step-no">2</span><h3>日時の確認</h3><p>作業内容とお見積り、伺う日時をご連絡します。</p></li>
+            <li><span class="step-no">3</span><h3>交換作業</h3><p>営業所や現場に伺い、交換します。</p></li>
+            <li><span class="step-no">4</span><h3><span class="nb">点検・</span><span class="nb">お引き渡し</span></h3><p>締め付けと空気圧を確認して、作業完了です。</p></li>
+          </ol>
+          <p class="step-caption"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 class="h2"><span class="nb">タイヤ交換の</span><br><span class="nb">ご依頼・ご相談</span></h2>
+        <p class="lead">メールかお電話でご連絡ください。メールの場合は、車種・本数・作業場所・希望日時を書いていただくとスムーズです。</p>
+      </div>
+      <div class="contact-box">
+        <a class="btn btn-dark" href="mailto:info@example.com">メールで依頼する</a>
+        <p class="mail-addr">info@example.com</p>
+        <div class="divider"></div>
+        <a class="tel" href="tel:0000000000">000-000-0000<small>受付 ８:３０〜１９:３０</small></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="company">
+    <div class="wrap">
+      <h2 class="h2">会社情報</h2>
+      <dl class="company">
+        <dt>会社名</dt><dd>恵伸タイヤ</dd>
+        <dt>代表者</dt><dd>代表取締役　〇〇 〇〇</dd>
+        <dt>創業</dt><dd>２２２２年２月</dd>
+        <dt>所在地</dt><dd>愛知県西尾市〇〇 0-0-0</dd>
+        <dt>事業内容</dt><dd>大型・中型トラックのタイヤ交換、出張交換、タイヤ点検</dd>
+        <dt>対応エリア</dt><dd>三河地区全域</dd>
+        <dt>営業時間</dt><dd>８:３０〜１９:３０</dd>
+        <dt>電話</dt><dd><a href="tel:0000000000">000-000-0000</a></dd>
+        <dt>メール</dt><dd><a href="mailto:info@example.com">info@example.com</a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/your_account/" target="_blank" rel="noopener">@your_account</a></dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">&copy; 2026 keishin.engineer_k</div>
+</footer>
+
+<div class="float-contact" aria-label="ご依頼・ご相談">
+  <a class="btn btn-line" href="tel:0000000000">電話する</a>
+  <a class="btn btn-yellow" href="mailto:info@example.com">メールで依頼</a>
+</div>
+
+<script>
+  // 依頼メールの件名と本文テンプレートを、全メールリンクに自動で付ける
+  const subject = 'タイヤ交換のご依頼';
+  const body = [
+    '会社名：', 'ご担当者名：', 'お電話番号：', '車種・台数：',
+    'タイヤサイズ・本数：', '作業場所：', '希望日時：', 'その他：'
+  ].join('\r\n');
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+    a.href = a.href.split('?')[0] + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+
+  const road = document.querySelector('.road');
+  const truck = document.querySelector('.truck');
+  const tire = document.querySelector('.tire');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let ticking = false;
+
+  // スクロール量に合わせてトラックが進み、タイヤが回る
+  function update(){
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.min(scrollY / max, 1) : 0;
+    truck.style.transform = `translateX(${p * (road.clientWidth - truck.clientWidth)}px)`;
+    if (!reduce) tire.style.transform = `rotate(${scrollY * 0.35}deg)`;
+    ticking = false;
+  }
+  addEventListener('scroll', () => { if (!ticking){ requestAnimationFrame(update); ticking = true; } }, {passive:true});
+  addEventListener('resize', update);
+  update();
+
+  // 作業の様子：タブで画像を切り替え
+  const tabs = [...document.querySelectorAll('.tab')];
+  let galleryStarted = false;
+  function showPanel(panel){
+    panel.classList.remove('in');
+    panel.hidden = false;
+    void panel.offsetWidth;          // 表示アニメーションをやり直すため
+    if (galleryStarted) panel.classList.add('in');
+  }
+  function selectTab(tab){
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (on) showPanel(panel); else { panel.hidden = true; panel.classList.remove('in'); }
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+  // 最初にギャラリーが画面に入ったら表示
+  const galleryWatcher = new IntersectionObserver(entries => {
+    if (entries.some(e => e.isIntersecting)){
+      galleryStarted = true;
+      document.querySelector('.gallery:not([hidden])').classList.add('in');
+      galleryWatcher.disconnect();
+    }
+  }, {threshold:.15});
+  galleryWatcher.observe(document.querySelector('.tabs'));
+
+  // 作業の流れ：スクロール量に合わせてタイヤ交換が進む
+  const flowSec = document.getElementById('flow');
+  const flowTrack = document.querySelector('.flow-track');
+  const flowStage = document.querySelector('.flow-stage');
+  const header = document.querySelector('.site-header');
+  const scene = document.querySelector('.scene');
+  const q = sel => scene.querySelector(sel);
+  const el = {
+    truck:q('.truck-body'), rw:[...scene.querySelectorAll('.rw')], jack:q('.jack-post'), jackSet:q('.jack'),
+    old:q('.old-tire'), neu:q('.new-tire'), worker:q('.worker'), wrench:q('.wrench'),
+    badge:q('.badge'), bubble:q('.bubble'), mail:q('.ic-mail'), cal:q('.ic-cal')
+  };
+  const stepList = document.querySelector('.steps');
+  const hint = document.querySelector('.scroll-hint');
+  const steps = [...document.querySelectorAll('.steps li')];
+  const caption = document.querySelector('.step-caption');
+  const seg = (p, a, b) => Math.min(Math.max((p - a) / (b - a), 0), 1);
+  const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+  const back = t => t === 0 ? 0 : 1 + 2.7*Math.pow(t - 1, 3) + 1.7*Math.pow(t - 1, 2);
+  let lastStep = -1;
+
+  function renderScene(p){
+    // 案内は少しスクロールしたら消える
+    hint.style.opacity = 1 - seg(p, .01, .05);
+    // 1 ご連絡 → 2 日時の確認：吹き出しのアイコンが切り替わる
+    const bIn = seg(p, .02, .07);
+    el.bubble.style.opacity = bIn * (1 - seg(p, .33, .37));
+    el.bubble.style.transform = `scale(${.6 + .4*bIn})`;
+    const toCal = seg(p, .16, .20);
+    el.mail.style.opacity = 1 - toCal;
+    el.cal.style.opacity = toCal;
+    // 2の後半：作業員が現場に到着
+    const arrive = ease(seg(p, .24, .36));
+    const crew = seg(p, .24, .28) * (1 - seg(p, .87, .90));
+    el.worker.style.opacity = crew;
+    el.worker.style.transform = `translateX(${170 * (1 - arrive)}px)`;
+    const ready = seg(p, .34, .37) * (1 - seg(p, .87, .90));
+    el.jackSet.style.opacity = ready;   // ジャッキは到着後に置いて、作業員と一緒に片付ける
+    el.wrench.style.opacity = ready;
+    // 3 交換作業：ジャッキアップ → 古いタイヤを外す → 新しいタイヤ → 締め付け
+    el.jack.style.transform = `scaleY(${ease(seg(p, .38, .44)) * (1 - ease(seg(p, .77, .81)))})`;
+    const swing = Math.sin(seg(p, .42, .47) * Math.PI) + Math.abs(Math.sin(seg(p, .67, .77) * Math.PI * 2));
+    el.wrench.style.transform = `rotate(${-16 * swing}deg)`;
+    const o = ease(seg(p, .46, .56));
+    el.old.style.transform = `translateX(${300*o}px) rotate(${610*o}deg)`;
+    el.old.style.opacity = 1 - seg(p, .50, .56);
+    // 4 点検・お引き渡し：チェック → トラックが走り出す
+    const drive = Math.pow(seg(p, .88, 1), 2) * 780;
+    const spin = drive / 28 * 57.3;
+    const n = ease(seg(p, .56, .67));
+    el.neu.style.opacity = seg(p, .555, .565);
+    el.neu.style.transform = `translateX(${280*(1 - n) + drive}px) rotate(${570*(1 - n) + spin}deg)`;
+    el.truck.style.transform = `translateX(${drive}px)`;
+    el.rw.forEach(w => w.style.transform = `rotate(${spin}deg)`);
+    const k = seg(p, .80, .85);
+    el.badge.style.opacity = k > 0 ? 1 - seg(p, .88, .91) : 0;
+    el.badge.style.transform = `translateX(${drive}px) scale(${back(k)})`;
+
+    // 下の1〜4をつなぐ線が、進み具合に合わせて黄色く伸びる（走り去るときに端まで届く）
+    const fill = p < .18 ? .125 + p/.18*.25 : p < .36 ? .375 + (p-.18)/.18*.25 : p < .80 ? .625 + (p-.36)/.44*.25 : .875 + (p-.80)/.20*.125;
+    stepList.style.setProperty('--fill', fill.toFixed(4));
+
+    const idx = p < .18 ? 0 : p < .36 ? 1 : p < .80 ? 2 : 3;
+    if (idx !== lastStep){
+      steps.forEach((li, i) => { li.classList.toggle('is-active', i === idx); li.classList.toggle('is-done', i < idx); });
+      caption.textContent = steps[idx].querySelector('p').textContent;
+      lastStep = idx;
+    }
+  }
+  function flowProgress(){
+    const r = flowTrack.getBoundingClientRect();
+    const total = r.height - flowStage.offsetHeight;
+    return total > 0 ? Math.min(Math.max((header.offsetHeight - r.top) / total, 0), 1) : 1;
+  }
+  if (reduce){
+    flowSec.classList.add('flow-static');
+    renderScene(.89);
+    steps.forEach(li => li.classList.remove('is-done', 'is-active'));
+  } else {
+    renderScene(flowProgress());
+    addEventListener('scroll', () => requestAnimationFrame(() => renderScene(flowProgress())), {passive:true});
+    addEventListener('resize', () => renderScene(flowProgress()));
+  }
+
+  // スマホ：トップを過ぎたら依頼バーを出す（お問い合わせ欄が見えている間は隠す）
+  const floatBar = document.querySelector('.float-contact');
+  let heroVisible = true, contactVisible = false;
+  const watcher = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.target.id === 'hero') heroVisible = e.isIntersecting;
+      else contactVisible = e.isIntersecting;
+    });
+    floatBar.classList.toggle('show', !heroVisible && !contactVisible);
+  });
+  watcher.observe(document.getElementById('hero'));
+  watcher.observe(document.getElementById('contact'));
+</script>
+</body>
+</html>
